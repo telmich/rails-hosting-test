@@ -46,3 +46,4 @@ namespace :deploy do
     stop
     start
   end
+end
