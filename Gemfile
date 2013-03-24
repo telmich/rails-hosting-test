@@ -9,6 +9,10 @@ gem 'rails', '3.2.13'
 
 gem 'sqlite3'
 
+# Requiring some javascript engine:
+# /home/users/nico/.rbenv/versions/2.0.0-p0/lib/ruby/gems/2.0.0/gems/execjs-1.4.0/lib/execjs/runtimes.rb:51:in `autodetect': Could not find a JavaScript runtime. See https://github.com/sstephenson/execjs for a list of available runtimes. (ExecJS::RuntimeUnavailable)
+#
+gem 'therubyracer'
 
 # Gems used only for assets and not required
 # in production environments by default.
