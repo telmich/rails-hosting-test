@@ -21,7 +21,7 @@ set :ssh_options, {:forward_agent => true}
 # Don't try to use sudo - all deps should already be there!
 set :use_sudo, false
 
-# Unicorn integration
+# Unicorn integration, Nico Schottelius, 2013-03-24
 set :unicorn_binary, "bundle exec unicorn --listen #{current_path}/unicorn.sock --env #{rails_env} --daemonize"
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
  
