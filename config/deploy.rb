@@ -12,7 +12,7 @@ set :repository, "git@github.com:telmich/rails-hosting-test.git"
 
 set :deploy_via, :remote_cache
 
-server 'wittbib-staging.panter.ch', :app, :web, :db, :primary => true
+server 'rails-19.panter.ch', :app, :web, :db, :primary => true
 set :deploy_to, "/home/rails/app"
 set :user, "rails"
 
@@ -26,24 +26,7 @@ set :unicorn_binary, "bundle exec unicorn --listen #{current_path}/unicorn.sock 
 set :unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid"
  
 namespace :deploy do
-  task :start, :roles => :app, :except => { :no_release => true } do
-    run "cd #{current_path} && #{unicorn_binary}"
-  end
- 
-  task :stop, :roles => :app, :except => { :no_release => true } do
-    run "if [ -f #{unicorn_pid} ]; then kill `cat #{unicorn_pid}`; fi"
-  end
- 
-  task :graceful_stop, :roles => :app, :except => { :no_release => true } do
-    run "if [ -f #{unicorn_pid} ]; then kill -s QUIT `cat #{unicorn_pid}`; fi"
-  end
- 
-  task :reload, :roles => :app, :except => { :no_release => true } do
-    run "if [ -f #{unicorn_pid} ]; then kill -s USR2 `cat #{unicorn_pid}`; fi"
-  end
- 
   task :restart, :roles => :app, :except => { :no_release => true } do
-    stop
-    start
-  end
+    run "$HOME/bin/unicorn_wrapper restart"
+  end 
 end
